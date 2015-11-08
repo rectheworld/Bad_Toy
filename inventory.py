@@ -1,11 +1,23 @@
 import pygame
 import os
 import math
+import planes
 
 # you will get a list as a paraemter ie list = ["ob1"]
 
 # test list 
 test_list = ["dragon"]
+
+class DropZone(planes.Plane):
+	def dropped_upon(self, plane, coordinates):
+		plnaes.Plane.dropped_upon(self.plane, coordinates)
+
+class DropDisplay(planes.Display):
+
+	def dropped_upon(self, plane, coordinates):
+		pass
+
+
 
 class Inventory():
 
@@ -17,36 +29,46 @@ class Inventory():
 		self.border_color = pygame.Color("grey")
 		self.border_height = 16
 		self.contents = pygame.Rect(0,ROOM_HEIGHT+self.border_height/2-1,SCREEN_WIDTH,SCREEN_HEIGHT-ROOM_HEIGHT-self.border_height+1)
-		self.font=game.font
-		self.border_text = self.font.render("what you have:",True,pygame.color("black"),self.border_color)
-		self.status = self.font.render("you are in the bank",True,pygame.color("black"),self.border_color)
+		self.font= pygame.font
+		#self.border_text = self.font.render("what you have:",True,pygame.color("black"),self.border_color)
+		#self.status = self.font.render("you are in the bank",True,pygame.color("black"),self.border_color)
 		self.item=[]
 		self.dirty = True
 
-	def draw(self,screen):
-		if not self.dirty:
-			self.dirty = False
-			screen.fill(self.contents_color,self.contents)
-			pygame.draw.rect(screen,self.border_color,self.contents,self.border_height)
-			screen.blit(self.border_text,(10,ROOM_HEIGHT+1))
-			screen.blit(self.status,(10,SCREEN_HEIGHT-self.border_height+1))
-			x = 22
-			y = SCREEN_HEIGHT-self.border_height-16
-			for item in self.item:   #for item in the list, call items in the dictory 
+		self.image = pygame.image.load("images/menu0000.png").convert()
 
-				if game.cur_item != item:
-					x = item[item].inventory.update_inventory(screen,x,y)
+		# Small images 
+		self.dragon = pygame.image.load("all_images/dragon0000.png").convert() 
+		self.key = pygame.imgage.load("key","all_images/key0000.png").convert()
+
+	def draw(self, screen):
+		screen.blit(self.image, (0,450))
+
+		# if not self.dirty:
+		# 	self.dirty = False
+		# 	screen.fill(self.contents_color,self.contents)
+		# 	pygame.draw.rect(screen,self.border_color,self.contents,self.border_height)
+		# 	screen.blit(self.border_text,(10,ROOM_HEIGHT+1))
+		# 	screen.blit(self.status,(10,SCREEN_HEIGHT-self.border_height+1))
+		# 	x = 22
+		# 	y = SCREEN_HEIGHT-self.border_height-16
+		# 	for item in self.item:   #for item in the list, call items in the dictory 
+
+		# 		if game.cur_item != item:
+		# 			x = item[item].inventory.update_inventory(screen,x,y)
        
 
-        #dictionary
-		objects_list = {}
-		dragon_image = load_image("dragon0000.png")
-		objects_list["dragon"] = dragon_image
-		# do for everythibg 
-		key_image = load_image("key0000.png")
-		objects_list["key"]=key_image
-		bear_image = load_image("Bear.png")
-		objects_list["bear"] = bear_image
+  #       #dictionary
+		# objects_list = {}
+		# dragon_image = load_image("dragon0000.png")
+		# objects_list["dragon"] = dragon_image
+		# # do for everythibg 
+		# key_image = load_image("key0000.png")
+		# objects_list["key"]=key_image
+		# bear_image = load_image("Bear.png")
+		# objects_list["bear"] = bear_image
+
+
 
 
 		# Dict of all objects 
