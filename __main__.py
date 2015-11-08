@@ -8,7 +8,7 @@ import pygame
 from Tracker import tracker 
 
 # This shouldnet go here 
-from inventory import Inventory
+#from inventory import Inventory
 # from room_change import Room_Change 
 # from menu import Menu
 
@@ -60,7 +60,7 @@ class Game(object):
 		# List of things in Menu 
 
 		# this should be connected to Tracker 
-		self.inventory = Inventory() 
+		#self.inventory = Inventory() 
 
 		# List of things in current room 
 		self.tracker.room_junk[self.current_room_string]
@@ -91,7 +91,7 @@ class Game(object):
 			if thing != None:
 				self.screen.blit(thing.image, thing.pos)
 
-		self.inventory.draw(self.screen)
+		#self.inventory.draw(self.screen)
 
 	def main(self):
 		"""
