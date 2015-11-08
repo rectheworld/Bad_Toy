@@ -56,4 +56,5 @@ class Room():
 					# Ren 
 					# This function wont go here, it will tell main to walk the tree and then promt 
 					#exits(again based on the result )
+					pass
 		return self.room_name
