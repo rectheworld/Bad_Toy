@@ -40,54 +40,7 @@ class Game(object):
 		self.game_over = False
 
 
-class tracker():
-	def __init__(self):
-		self.ur_items_list = pygame.sprite.Group()
-		self.items_location = []
-		self.room_with_exits = ["porch",(270,0,180,320)]
 
-		self.porch = Room("room","all_images/Porch0000.png")
-
-		self.key = Item("item","all_images/key0000.png",(300,400))
-		self.dragon = Item("item","all_images/dragon0000.png",(550,330))
-	
-
-		
-class Room():
-
-	def __init__(self,image_file,exit_list):
-		self.exits = [(0,0,0,0)]
-		
-
-class Item(pygame.sprite.Sprite):
-	def __init__(self,image_file,location):
-		pygame.sprite.Sprite.__init__(self)
-		self.held = False
-		self.loc = location
-		self.image = image_file
-	def get_image(self):
-		return self.image
-	def get_size(self):
-		return self.size
-	def set_loc(self,location):
-		self.loc = location
-
-
-class Toys(pygame.sprite.Sprite):
-	def __init__(self,image_file,loc):
-		pygame.sprite.Sprite.__init__(self)
-		self.image = image_file
-		self.loc = location
-		self.size = size
-	def get_image(self):
-		return self.image
-	def get_size(self):
-		return self.size
-	def set_loc(self,location):
-		self.loc = location
-
-	def sayings(self):
-		print "hello"
 
 
 
