@@ -7,7 +7,7 @@ import pygame
 
 # WILL IMPORT THESE WHEN THEY ARE BUILT 
 
-# from tracker import Tracker 
+from Tracker import tracker 
 # from room_change import Room_Change 
 # from menu import Menu
 
@@ -46,8 +46,24 @@ class Game(object):
 		# While this variable is true, the game will continue to Run 
 		self.running		= True 
 
+
+
+		# instance of Tracker Class
+		self.tracker = tracker() 
+
 		# Keep track of what room we are in 
-		self.current_room	= None 
+		# Porch is the first room we are in 
+		self.current_room_string	= "porch" 
+		self.current_room = self.tracker.room_dict[self.current_room_string]
+
+		# List of things in Menu 
+		#self.tracker.menu_list
+
+		# List of things in current room 
+		self.tracker.room_junk[self.current_room_string]
+
+	def room_change(self):
+		pass
 
 
 	def process_events(self):
@@ -64,7 +80,13 @@ class Game(object):
 
 		This function is called in the main function 
 		"""
-		pass 
+
+		self.screen.blit(self.current_room.image, (0,0))
+
+		# some of this should go in think 
+		for thing in self.tracker.room_junk[self.current_room_string]:
+			if thing != None:
+				self.screen.blit(thing.image, thing.pos)
 
 	def main(self):
 		"""
@@ -78,15 +100,27 @@ class Game(object):
 			for event in events:
 				if event.type == pygame.QUIT:
 					self.running = False
-					pygame.quit()
+					
+				elif event.type == pygame.MOUSEBUTTONDOWN:
+					mouse_pos = pygame.mouse.get_pos()
+					print mouse_pos
+					new_current_room_string = self.current_room.exit(mouse_pos)
+					# Check to see if room change 
+					if self.current_room_string != new_current_room_string:
+						self.current_room_string = new_current_room_string
+						self.current_room = self.tracker.room_dict[self.current_room_string]
 
-			self.screen.fill((255, 255,255))
+			self.screen.fill((255, 0,255))
 
 			self.process_events()
 
 			self.render()
 
+			pygame.display.flip()
+
 			self.clock.tick(FPS)
+
+		pygame.quit()
 
 
 if __name__== "__main__":
