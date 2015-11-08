@@ -50,8 +50,7 @@ class tracker():
 
 		self.key = Item("item","all_images/key0000.png",(300,400))
 		self.dragon = Item("item","all_images/dragon0000.png",(550,330))
-	def exam():
-		return false
+	
 
 		
 class Room():
