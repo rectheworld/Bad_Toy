@@ -4,10 +4,11 @@
 # Date: 11-07-2015
 
 import pygame
-
 # WILL IMPORT THESE WHEN THEY ARE BUILT 
-
 from Tracker import tracker 
+
+# This shouldnet go here 
+from inventory import Inventory
 # from room_change import Room_Change 
 # from menu import Menu
 
@@ -57,7 +58,9 @@ class Game(object):
 		self.current_room = self.tracker.room_dict[self.current_room_string]
 
 		# List of things in Menu 
-		#self.tracker.menu_list
+
+		# this should be connected to Tracker 
+		self.inventory = Inventory() 
 
 		# List of things in current room 
 		self.tracker.room_junk[self.current_room_string]
@@ -87,6 +90,8 @@ class Game(object):
 		for thing in self.tracker.room_junk[self.current_room_string]:
 			if thing != None:
 				self.screen.blit(thing.image, thing.pos)
+
+		self.inventory.draw(self.screen)
 
 	def main(self):
 		"""
